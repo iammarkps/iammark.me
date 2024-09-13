@@ -45,3 +45,49 @@ const posts = (await getCollection('blog')).sort(
     </ul>
   </section>
 </Layout>
+---
+import Layout from '@/layouts/Main.astro'
+---
+
+<Layout>
+  <div class="space-y-8">
+    <section class="text-center">
+      <h1 class="text-4xl font-bold mb-4">Welcome to My Personal Website</h1>
+      <p class="text-xl mb-6">
+        Hi, I'm Possawat Suksai (Mark) - Finance Student & Coding Enthusiast
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4">What I Do</h2>
+      <p class="mb-4">
+        I blend finance and technology to create innovative solutions. My passion lies in exploring the intersection of these two fields and leveraging programming to solve complex financial problems.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Featured Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="border p-4 rounded-lg">
+          <h3 class="text-xl font-semibold mb-2">PROGRAMMING.IN.TH</h3>
+          <p>A platform for learning programming and algorithmic problem-solving.</p>
+          <a href="https://programming.in.th" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Visit Project</a>
+        </div>
+        <div class="border p-4 rounded-lg">
+          <h3 class="text-xl font-semibold mb-2">Triam Udom Suksa School Projects</h3>
+          <p>Collaborative projects contributing to the school community.</p>
+          <a href="https://github.com/triamudomcmc" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center">
+      <h2 class="text-2xl font-bold mb-4">Let's Connect</h2>
+      <div class="space-x-4">
+        <a href="/about" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">About Me</a>
+        <a href="https://www.linkedin.com/in/possawat/" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">LinkedIn</a>
+        <a href="https://github.com/iammarkps" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">GitHub</a>
+      </div>
+    </section>
+  </div>
+</Layout>
