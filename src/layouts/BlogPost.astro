@@ -16,19 +16,14 @@ const { title, pubDate } = Astro.props
   <article>
     <div class="mx-auto flex w-full flex-col justify-center">
       <article
-        class="mx-auto mb-32 flex w-full max-w-2xl flex-col items-start justify-center">
+        class="mx-auto mb-32 flex w-full max-w-2xl flex-col items-start justify-center"
+      >
         <h1 class="mb-4 font-display text-3xl font-bold text-black md:text-5xl">
           {title}
         </h1>
         <div
-          class="flex w-full flex-col items-start justify-between font-display md:flex-row md:items-center">
-          <div class="flex items-center">
-            <div class="w-[48px] h-[48px]">
-              <Image src={profilePic} alt="avatar" />
-            </div>
-            <p class="ml-2">iammarkps</p>
-          </div>
-
+          class="flex w-full flex-col items-start justify-between font-display md:flex-row md:items-center"
+        >
           <p>
             <time datetime={pubDate.toDateString()}
               >{format(pubDate, 'LLLL d, yyyy')}</time

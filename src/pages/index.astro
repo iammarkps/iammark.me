@@ -27,16 +27,13 @@ const posts = (await getCollection('blog')).sort(
                   {post.data.title}
                 </a>
               </h3>
-              <time
-                datetime={post.data.pubDate.toDateString()}
-                class="text-sm text-gray-600 mb-2"
-              >
-                {format(post.data.pubDate, 'LLLL d, yyyy')} (
-                {formatDistanceToNow(post.data.pubDate, {
-                  addSuffix: true,
-                })}
-                )
-              </time>
+              <p class="text-sm text-gray-600 mb-2">
+                <time datetime={post.data.pubDate.toDateString()}>
+                  {format(post.data.pubDate, 'LLLL d, yyyy')}
+                </time>
+                ({formatDistanceToNow(post.data.pubDate, { addSuffix: true })})
+              </p>
+
               <p class="text-gray-800 mt-3">{post.data.description}</p>
             </article>
           </li>
