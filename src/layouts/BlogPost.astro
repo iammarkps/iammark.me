@@ -16,7 +16,7 @@ const { title, pubDate } = Astro.props
         class="mx-auto mb-32 flex w-full max-w-2xl flex-col items-start justify-center"
       >
         <h1
-          class="font-display scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+          class="scroll-m-20 font-display text-4xl font-extrabold tracking-tight lg:text-5xl"
         >
           {title}
         </h1>
@@ -28,7 +28,7 @@ const { title, pubDate } = Astro.props
           ({formatDistanceToNow(pubDate, { addSuffix: true })})
         </p>
         <div
-          class="prose prose-neutral prose-h1:font-display prose-h2:font-display prose-h3:font-display prose-h4:font-display mt-4 w-full max-w-none dark:prose-invert"
+          class="prose prose-neutral mt-4 w-full max-w-none dark:prose-invert prose-h1:font-display prose-h2:font-display prose-h3:font-display prose-h4:font-display"
         >
           <slot />
         </div>

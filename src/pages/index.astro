@@ -18,15 +18,15 @@ const posts = (await getCollection('blog')).sort(
     >
       Posts
     </h2>
-    <ul class="space-y-8 mt-6">
+    <ul class="mt-6 space-y-8">
       {
         posts.map((post) => (
           <li class="pb-8 last:pb-0">
             <article>
-              <h3 class="font-display scroll-m-20 text-2xl font-semibold tracking-tight hover:underline">
+              <h3 class="scroll-m-20 font-display text-2xl font-semibold tracking-tight hover:underline">
                 <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
               </h3>
-              <p class="text-sm leading-7 mb-2">
+              <p class="mb-2 text-sm leading-7">
                 <time datetime={post.data.pubDate.toDateString()}>
                   {format(post.data.pubDate, 'LLLL d, yyyy')}
                 </time>
