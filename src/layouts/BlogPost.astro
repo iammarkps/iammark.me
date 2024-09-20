@@ -1,11 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import { format, formatDistanceToNow } from 'date-fns'
-import { Image } from 'astro:assets'
 
 import Layout from '@/layouts/Main.astro'
-
-import profilePic from '@/assets/images/iammarkps.jpg'
 
 type Props = CollectionEntry<'blog'>['data']
 
@@ -18,20 +15,21 @@ const { title, pubDate } = Astro.props
       <article
         class="mx-auto mb-32 flex w-full max-w-2xl flex-col items-start justify-center"
       >
-        <h1 class="mb-4 font-display text-3xl font-bold text-black md:text-5xl">
+        <h1
+          class="font-display scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+        >
           {title}
         </h1>
+
+        <p class="leading-7 [&:not(:first-child)]:mt-6">
+          <time datetime={pubDate.toDateString()}
+            >{format(pubDate, 'LLLL d, yyyy')}</time
+          >
+          ({formatDistanceToNow(pubDate, { addSuffix: true })})
+        </p>
         <div
-          class="flex w-full flex-col items-start justify-between font-display md:flex-row md:items-center"
+          class="prose prose-neutral prose-h1:font-display prose-h2:font-display prose-h3:font-display prose-h4:font-display mt-4 w-full max-w-none dark:prose-invert"
         >
-          <p>
-            <time datetime={pubDate.toDateString()}
-              >{format(pubDate, 'LLLL d, yyyy')}</time
-            >
-            ({formatDistanceToNow(pubDate, { addSuffix: true })})
-          </p>
-        </div>
-        <div class="prose mt-4 w-full max-w-none">
           <slot />
         </div>
       </article>
