@@ -1,6 +1,7 @@
 ---
 import { ModeToggle } from '@/components/ModeToggle'
 import BaseHead from '../components/BaseHead.astro'
+import Posthog from '@/components/posthog.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 
 import '@fontsource-variable/inter'
@@ -40,6 +41,7 @@ import '@fontsource/ibm-plex-sans-thai/700.css'
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <Posthog />
   </head>
   <body>
     <div class="flex min-h-screen flex-col items-center">
