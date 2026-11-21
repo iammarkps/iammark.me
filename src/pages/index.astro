@@ -13,31 +13,27 @@ const posts = (await getCollection('blog')).sort(
 
 <Layout>
   <section>
-    <h2
-      class="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0"
-    >
+    <h2 class="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
       Posts
     </h2>
     <ul class="mt-6 space-y-8">
-      {
-        posts.map((post) => (
-          <li class="pb-8 last:pb-0">
-            <article>
-              <h3 class="scroll-m-20 font-display text-2xl font-semibold tracking-tight hover:underline">
-                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-              </h3>
-              <p class="mb-2 text-sm leading-7">
-                <time datetime={post.data.pubDate.toDateString()}>
-                  {format(post.data.pubDate, 'LLLL d, yyyy')}
-                </time>
-                ({formatDistanceToNow(post.data.pubDate, { addSuffix: true })})
-              </p>
+      {posts.map((post) => (
+        <li class="pb-8 last:pb-0">
+          <article>
+            <h3 class="scroll-m-20 font-display text-2xl font-semibold tracking-tight hover:underline">
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </h3>
+            <p class="mb-2 text-sm leading-7">
+              <time datetime={post.data.pubDate.toDateString()}>
+                {format(post.data.pubDate, 'LLLL d, yyyy')}
+              </time>
+              ({formatDistanceToNow(post.data.pubDate, { addSuffix: true })})
+            </p>
 
-              <p class="leading-7">{post.data.description}</p>
-            </article>
-          </li>
-        ))
-      }
+            <p class="leading-7">{post.data.description}</p>
+          </article>
+        </li>
+      ))}
     </ul>
   </section>
 </Layout>

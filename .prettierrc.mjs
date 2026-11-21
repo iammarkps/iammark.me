@@ -12,4 +12,5 @@ export default {
   ],
   semi: false,
   singleQuote: true,
+  tailwindStylesheet: './src/styles/globals.css',
 }

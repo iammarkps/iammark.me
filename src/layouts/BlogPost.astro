@@ -12,24 +12,18 @@ const { title, pubDate } = Astro.props
 <Layout>
   <article>
     <div class="mx-auto flex w-full flex-col justify-center">
-      <article
-        class="mx-auto mb-32 flex w-full max-w-2xl flex-col items-start justify-center"
-      >
-        <h1
-          class="scroll-m-20 font-display text-4xl font-extrabold tracking-tight lg:text-5xl"
-        >
+      <article class="mx-auto mb-32 flex w-full max-w-2xl flex-col items-start justify-center">
+        <h1 class="scroll-m-20 font-display text-4xl font-extrabold tracking-tight lg:text-5xl">
           {title}
         </h1>
 
         <p class="leading-7 [&:not(:first-child)]:mt-6">
-          <time datetime={pubDate.toDateString()}
-            >{format(pubDate, 'LLLL d, yyyy')}</time
-          >
+          <time datetime={pubDate.toDateString()}>
+            {format(pubDate, 'LLLL d, yyyy')}
+          </time>
           ({formatDistanceToNow(pubDate, { addSuffix: true })})
         </p>
-        <div
-          class="prose prose-neutral mt-4 w-full max-w-none dark:prose-invert prose-h1:font-display prose-h2:font-display prose-h3:font-display prose-h4:font-display"
-        >
+        <div class="prose prose-neutral mt-4 w-full max-w-none dark:prose-invert prose-h1:font-display prose-h2:font-display prose-h3:font-display prose-h4:font-display">
           <slot />
         </div>
       </article>
