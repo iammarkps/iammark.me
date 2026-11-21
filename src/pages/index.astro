@@ -24,7 +24,7 @@ const posts = (await getCollection('blog')).sort(
           <li class="pb-8 last:pb-0">
             <article>
               <h3 class="scroll-m-20 font-display text-2xl font-semibold tracking-tight hover:underline">
-                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
               </h3>
               <p class="mb-2 text-sm leading-7">
                 <time datetime={post.data.pubDate.toDateString()}>
