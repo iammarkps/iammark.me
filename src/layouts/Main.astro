@@ -1,5 +1,5 @@
 ---
-import { ModeToggle } from '@/components/ModeToggle'
+import ThemeToggle from '@/components/ThemeToggle.astro'
 import BaseHead from '../components/BaseHead.astro'
 import Posthog from '@/components/posthog.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
@@ -14,33 +14,27 @@ import '@fontsource/ibm-plex-sans-thai/600.css'
 import '@fontsource/ibm-plex-sans-thai/700.css'
 ---
 
-<script is:inline>
-  const getThemePreference = () => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme')
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
-  }
-  const isDark = getThemePreference() === 'dark'
-  document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
-
-  if (typeof localStorage !== 'undefined') {
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains('dark')
-      localStorage.setItem('theme', isDark ? 'dark' : 'light')
-    })
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    })
-  }
-</script>
-
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script is:inline>
+      // Runs before first paint to avoid a flash of the wrong theme.
+      // localStorage "theme" is "light", "dark" or "system"; missing or
+      // "system" follows the OS setting, including changes while open.
+      ;(() => {
+        const media = window.matchMedia('(prefers-color-scheme: dark)')
+        const apply = () => {
+          let theme = null
+          try {
+            theme = localStorage.getItem('theme')
+          } catch {}
+          const dark = theme === 'dark' || (theme !== 'light' && media.matches)
+          document.documentElement.classList.toggle('dark', dark)
+        }
+        apply()
+        media.addEventListener('change', apply)
+      })()
+    </script>
     <Posthog />
   </head>
   <body>
@@ -48,31 +42,30 @@ import '@fontsource/ibm-plex-sans-thai/700.css'
       <div class="w-full max-w-2xl px-4">
         <header class="py-8">
           <div class="container mx-auto px-4">
-            <nav
-              class="mx-auto flex flex-row items-center justify-between py-6 font-display"
-            >
+            <nav class="mx-auto flex flex-row items-center justify-between py-6 font-display">
               <div class="flex">
-                <h2
-                  class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0"
-                >
-                  <a href="/" class="hover:underline">IAMMARKPS</a>
+                <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+                  <a href="/" class="hover:underline">
+                    IAMMARKPS
+                  </a>
                 </h2>
               </div>
               <div>
-                <ModeToggle client:load />
+                <ThemeToggle />
               </div>
             </nav>
             <div>
               <p class="leading-7 [&:not(:first-child)]:mt-6">
-                A blog by <a href="/about" class="font-bold hover:underline"
-                  >Possawat Suksai</a
-                >
+                A blog by{' '}
+                <a href="/about" class="font-bold hover:underline">
+                  Possawat Suksai
+                </a>
               </p>
             </div>
           </div>
         </header>
 
-        <main class="container mx-auto flex-grow px-4 py-8">
+        <main class="container mx-auto grow px-4 py-8">
           <slot />
         </main>
       </div>
